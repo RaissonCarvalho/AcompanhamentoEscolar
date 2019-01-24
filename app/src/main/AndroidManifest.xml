@@ -12,7 +12,8 @@
         android:name=".persistence.App">
         <activity
             android:name=".activity.CadastroDisciplinaActivity"
-            android:parentActivityName=".activity.CadastroDisciplinaActivity">
+            android:parentActivityName=".activity.CadastroDisciplinaActivity"
+            android:label="Nova Disciplina">
         </activity>
         <activity android:name=".activity.MainActivity">
             <intent-filter>

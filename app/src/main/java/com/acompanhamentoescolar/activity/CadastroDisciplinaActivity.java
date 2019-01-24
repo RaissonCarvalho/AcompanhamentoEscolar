@@ -19,7 +19,7 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
     private EditText edNomeDisciplina;
     private Button btnSalvarNovaDisciplina;
 
-    private Box<Disciplina> boxDisciplina;
+    private Box<Disciplina> disciplinaBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
         setupViews();
 
         BoxStore store = ((App)getApplication()).getBoxStore();
-        boxDisciplina = store.boxFor(Disciplina.class);
+        disciplinaBox = store.boxFor(Disciplina.class);
 
         btnSalvarNovaDisciplina.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
 
         Disciplina disciplina = new Disciplina(nome);
 
-        boxDisciplina.put(disciplina);
+        disciplinaBox.put(disciplina);
 
         Toast.makeText(getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
 
