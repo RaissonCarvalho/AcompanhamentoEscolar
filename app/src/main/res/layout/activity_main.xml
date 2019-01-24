@@ -15,15 +15,17 @@
         />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_disciplina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_black_24dp"
         app:layout_anchor="@id/rv_lista_disciplinas"
-        app:layout_anchorGravity="bottom|right"
+        app:layout_anchorGravity="bottom|end"
         android:backgroundTint="@color/colorPrimary"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:clickable="true"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

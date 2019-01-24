@@ -1,4 +1,4 @@
-package com.acompanhamentoescolar.app;
+package com.acompanhamentoescolar.persistence;
 
 import android.app.Application;
 import android.util.Log;

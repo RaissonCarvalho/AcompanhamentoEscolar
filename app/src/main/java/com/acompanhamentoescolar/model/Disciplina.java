@@ -22,6 +22,10 @@ public class Disciplina {
         this.situacao = situacao;
     }
 
+    public Disciplina(String nome) {
+        this.nome = nome;
+    }
+
     public long getId() {
         return id;
     }
