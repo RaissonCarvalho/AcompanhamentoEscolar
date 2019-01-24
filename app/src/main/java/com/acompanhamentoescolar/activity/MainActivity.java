@@ -1,7 +1,9 @@
-package com.acompanhamentoescolar;
+package com.acompanhamentoescolar.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.acompanhamentoescolar.R;
 
 public class MainActivity extends AppCompatActivity {
 
