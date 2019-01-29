@@ -21,6 +21,8 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
 
     private Box<Disciplina> disciplinaBox;
 
+    private Disciplina disciplina;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +33,24 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
         BoxStore store = ((App)getApplication()).getBoxStore();
         disciplinaBox = store.boxFor(Disciplina.class);
 
+        long id = getIntent().getLongExtra("disciplinaId", -1);
+
+        if (id == -1){
+            //Nova disciplina
+            disciplina = new Disciplina();
+        }else{
+            this.setTitle("Editar");
+            disciplina = disciplinaBox.get(id);
+            edNomeDisciplina.setText(disciplina.getNome());
+
+
+        }
+
         btnSalvarNovaDisciplina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                salvarNovaDisciplina();
+                salvarDisciplina();
 
             }
         });
@@ -48,16 +63,14 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
 
     }
 
-    public void salvarNovaDisciplina(){
+    public void salvarDisciplina(){
 
         String nome = edNomeDisciplina.getText().toString();
-
-        Disciplina disciplina = new Disciplina(nome);
+        disciplina.setNome(nome);
 
         disciplinaBox.put(disciplina);
 
         Toast.makeText(getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
         finish();
 
     }

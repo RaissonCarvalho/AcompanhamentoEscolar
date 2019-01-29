@@ -3,6 +3,7 @@ package com.acompanhamentoescolar.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acompanhamentoescolar.R;
+import com.acompanhamentoescolar.activity.CadastroDisciplinaActivity;
 import com.acompanhamentoescolar.model.Disciplina;
 
 import io.objectbox.Box;;
@@ -46,6 +48,16 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
 
         disciplinaViewHolder.txtNome.setText(disciplina.getNome());
 
+        disciplinaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               final Intent intent = new Intent(context, CadastroDisciplinaActivity.class);
+               intent.putExtra("disciplinaId", disciplina.getId());
+
+               context.startActivity(intent);
+            }
+        });
+
         disciplinaViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -55,7 +67,7 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.op_editar_disciplina){
+                        if (menuItem.getItemId() == R.id.op_add_nota_disciplina){
                             Toast.makeText(context, "Falta fazer", Toast.LENGTH_SHORT).show();
                         }
 

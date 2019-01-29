@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/op_editar_disciplina"
-        android:title="Editar">
+        android:id="@+id/op_add_nota_disciplina"
+        android:title="Adicionar nota">
     </item>
 
     <item
