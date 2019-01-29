@@ -15,7 +15,7 @@ import com.acompanhamentoescolar.persistence.App;
 
 import io.objectbox.Box;
 
-public class MainActivity extends AppCompatActivity {
+public class ListaDisciplinasActivity extends AppCompatActivity {
 
     private RecyclerView rvListaDisciplinas;
     private FloatingActionButton fabAddDisciplina;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_lista_disciplinas);
 
         setupViews();
 

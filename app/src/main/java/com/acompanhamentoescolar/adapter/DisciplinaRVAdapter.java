@@ -1,11 +1,15 @@
 package com.acompanhamentoescolar.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,18 +40,48 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DisciplinaViewHolder disciplinaViewHolder, final int posicao) {
+    public void onBindViewHolder(@NonNull final DisciplinaViewHolder disciplinaViewHolder, final int posicao) {
 
-        Disciplina disciplina = disciplinaBox.getAll().get(posicao);
+        final Disciplina disciplina = disciplinaBox.getAll().get(posicao);
 
         disciplinaViewHolder.txtNome.setText(disciplina.getNome());
 
-        disciplinaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        disciplinaViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(context, view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_file, popupMenu.getMenu());
 
-                Toast.makeText(context, "Clicou no: "+posicao, Toast.LENGTH_SHORT).show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.op_editar_disciplina){
+                            Toast.makeText(context, "Falta fazer", Toast.LENGTH_SHORT).show();
+                        }
 
+                        if (menuItem.getItemId() == R.id.op_excluir_disciplina){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                            builder.setTitle("Aviso: ");
+                            builder.setMessage("Deseja mesmo remover essa disciplina?");
+                            builder.setNegativeButton("Não", null);
+                            builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    removerDisciplina(posicao, disciplinaBox);
+                                }
+                            });
+
+                            builder.show();
+
+                        }
+
+                        return false;
+                    }
+                });
+
+                popupMenu.show();
+                return false;
             }
         });
 
@@ -67,5 +101,13 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
 
             txtNome = itemView.findViewById(R.id.txt_nome_disciplina);
         }
+    }
+
+    private void removerDisciplina(int posicao, Box<Disciplina> disciplinaBox){
+
+        disciplinaBox.remove(disciplinaBox.getAll().get(posicao));
+        notifyItemRemoved(posicao);
+        notifyItemRangeChanged(posicao, (int) disciplinaBox.count());
+
     }
 }
