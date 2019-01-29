@@ -74,7 +74,7 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                         if (menuItem.getItemId() == R.id.op_excluir_disciplina){
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                            builder.setTitle("Aviso: ");
+                            builder.setTitle("Aviso ");
                             builder.setMessage("Deseja mesmo remover essa disciplina?");
                             builder.setNegativeButton("Não", null);
                             builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
