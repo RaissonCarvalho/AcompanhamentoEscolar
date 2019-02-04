@@ -44,7 +44,7 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
     @Override
     public void onBindViewHolder(@NonNull final DisciplinaViewHolder disciplinaViewHolder, final int posicao) {
 
-        final Disciplina disciplina = disciplinaBox.getAll().get(posicao);
+        final Disciplina disciplina = disciplinaBox.getAll().get(disciplinaViewHolder.getAdapterPosition());
 
         disciplinaViewHolder.txtNome.setText(disciplina.getNome());
 
@@ -67,25 +67,29 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.op_add_nota_disciplina){
-                            Toast.makeText(context, "Falta fazer", Toast.LENGTH_SHORT).show();
-                        }
+                        switch (menuItem.getItemId()){
 
-                        if (menuItem.getItemId() == R.id.op_excluir_disciplina){
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            case R.id.op_add_nota_disciplina:{
+                                //TODO
+                            }
 
-                            builder.setTitle("Aviso ");
-                            builder.setMessage("Deseja mesmo remover essa disciplina?");
-                            builder.setNegativeButton("Não", null);
-                            builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    removerDisciplina(posicao, disciplinaBox);
-                                }
-                            });
+                            case R.id.op_excluir_disciplina:{
 
-                            builder.show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
+                                builder.setTitle("Aviso ");
+                                builder.setMessage("Deseja mesmo remover essa disciplina?");
+                                builder.setNegativeButton("Não", null);
+                                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        removerDisciplina(disciplinaViewHolder.getAdapterPosition(), disciplinaBox);
+                                    }
+                                });
+
+                                builder.show();
+
+                            }
                         }
 
                         return false;
