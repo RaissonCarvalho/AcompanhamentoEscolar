@@ -48,16 +48,6 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
 
         disciplinaViewHolder.txtNome.setText(disciplina.getNome());
 
-        disciplinaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               final Intent intent = new Intent(context, CadastroDisciplinaActivity.class);
-               intent.putExtra("disciplinaId", disciplina.getId());
-
-               context.startActivity(intent);
-            }
-        });
-
         disciplinaViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -71,6 +61,19 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
 
                             case R.id.op_add_nota_disciplina:{
                                 //TODO
+
+                                break;
+                            }
+
+                            case R.id.op_editar_disciplina:{
+
+                                final Intent intent = new Intent(context, CadastroDisciplinaActivity.class);
+                                intent.putExtra("disciplinaId", disciplina.getId());
+
+                                context.startActivity(intent);
+
+                                break;
+
                             }
 
                             case R.id.op_excluir_disciplina:{
@@ -88,6 +91,8 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                                 });
 
                                 builder.show();
+
+                                break;
 
                             }
                         }

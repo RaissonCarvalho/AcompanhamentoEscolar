@@ -7,6 +7,12 @@
     </item>
 
     <item
+        android:id="@+id/op_editar_disciplina"
+        android:title="Editar">
+
+    </item>
+
+    <item
         android:id="@+id/op_excluir_disciplina"
         android:title="Excluir">
     </item>
