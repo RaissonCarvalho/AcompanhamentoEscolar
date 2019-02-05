@@ -15,7 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acompanhamentoescolar.R;
-import com.acompanhamentoescolar.activity.CadastroDisciplinaActivity;
+import com.acompanhamentoescolar.activity.FormularioDisciplinaActivity;
+import com.acompanhamentoescolar.activity.FormularioNotaActivity;
 import com.acompanhamentoescolar.model.Disciplina;
 
 import io.objectbox.Box;;
@@ -47,6 +48,16 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
         final Disciplina disciplina = disciplinaBox.getAll().get(disciplinaViewHolder.getAdapterPosition());
 
         disciplinaViewHolder.txtNome.setText(disciplina.getNome());
+        if (disciplina.getNotas().isEmpty()){
+            disciplinaViewHolder.txtMedia.setText("");
+            disciplinaViewHolder.txtSituacao.setText("");
+        }else{
+            String media = String.format("%.1f", disciplina.calculaMedia());
+            disciplinaViewHolder.txtMedia.setText("Média: " +media);
+            disciplinaViewHolder.txtSituacao.setText(disciplina.verificaSituacao());
+
+        }
+
 
         disciplinaViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -60,14 +71,18 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                         switch (menuItem.getItemId()){
 
                             case R.id.op_add_nota_disciplina:{
-                                //TODO
+
+                                final Intent intent = new Intent(context, FormularioNotaActivity.class);
+                                intent.putExtra("disciplinaId", disciplina.getId());
+
+                                context.startActivity(intent);
 
                                 break;
                             }
 
                             case R.id.op_editar_disciplina:{
 
-                                final Intent intent = new Intent(context, CadastroDisciplinaActivity.class);
+                                final Intent intent = new Intent(context, FormularioDisciplinaActivity.class);
                                 intent.putExtra("disciplinaId", disciplina.getId());
 
                                 context.startActivity(intent);
@@ -116,11 +131,15 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
     class DisciplinaViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtNome;
+        TextView txtMedia;
+        TextView txtSituacao;
 
         public DisciplinaViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtNome = itemView.findViewById(R.id.txt_nome_disciplina);
+            txtMedia = itemView.findViewById(R.id.txt_media);
+            txtSituacao = itemView.findViewById(R.id.txt_situacao);
         }
     }
 

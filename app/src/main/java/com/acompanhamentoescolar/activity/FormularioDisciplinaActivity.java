@@ -14,9 +14,10 @@ import com.acompanhamentoescolar.model.Disciplina;
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 
-public class CadastroDisciplinaActivity extends AppCompatActivity {
+public class FormularioDisciplinaActivity extends AppCompatActivity {
 
     private EditText edNomeDisciplina;
+    private EditText edMediaAprovativa;
     private Button btnSalvarNovaDisciplina;
 
     private Box<Disciplina> disciplinaBox;
@@ -26,12 +27,12 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_disciplina);
+        setContentView(R.layout.activity_formulario_disciplina);
 
         setupViews();
 
-        BoxStore store = ((App)getApplication()).getBoxStore();
-        disciplinaBox = store.boxFor(Disciplina.class);
+        BoxStore boxStore = ((App)getApplication()).getBoxStore();
+        disciplinaBox = boxStore.boxFor(Disciplina.class);
 
         long id = getIntent().getLongExtra("disciplinaId", -1);
 
@@ -42,6 +43,7 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
             this.setTitle("Editar");
             disciplina = disciplinaBox.get(id);
             edNomeDisciplina.setText(disciplina.getNome());
+            edMediaAprovativa.setText(String.valueOf(disciplina.getMediaAprovativa()));
 
 
         }
@@ -60,13 +62,16 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
 
         edNomeDisciplina = findViewById(R.id.ed_nome_disciplina);
         btnSalvarNovaDisciplina = findViewById(R.id.btn_salvar_nova_disciplina);
+        edMediaAprovativa = findViewById(R.id.ed_media_aprovativa);
 
     }
 
     public void salvarDisciplina(){
 
         String nome = edNomeDisciplina.getText().toString();
+        double mediaAprovativa = Double.parseDouble(edMediaAprovativa.getText().toString());
         disciplina.setNome(nome);
+        disciplina.setMediaAprovativa(mediaAprovativa);
 
         disciplinaBox.put(disciplina);
 

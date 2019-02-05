@@ -17,26 +17,49 @@
           "name": "nome"
         },
         {
-          "id": "3:6238328288135612334",
-          "name": "media"
-        },
-        {
           "id": "4:1661781784836991146",
           "name": "situacao"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:5249531798431803295",
+          "name": "notas"
+        }
+      ]
+    },
+    {
+      "id": "2:2348623616023754192",
+      "lastPropertyId": "3:3185862656020294282",
+      "name": "Nota",
+      "properties": [
+        {
+          "id": "1:7444149943672780285",
+          "name": "id"
+        },
+        {
+          "id": "2:6088806752013681115",
+          "name": "valorNota"
+        },
+        {
+          "id": "3:3185862656020294282",
+          "name": "data"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:8911211660922295542",
+  "lastEntityId": "2:2348623616023754192",
   "lastIndexId": "0:0",
-  "lastRelationId": "0:0",
+  "lastRelationId": "1:5249531798431803295",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    6238328288135612334
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

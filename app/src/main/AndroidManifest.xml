@@ -3,18 +3,23 @@
     package="com.acompanhamentoescolar">
 
     <application
+        android:name=".persistence.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".persistence.App">
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.CadastroDisciplinaActivity"
-            android:parentActivityName=".activity.CadastroDisciplinaActivity"
-            android:label="Nova Disciplina">
+            android:name=".activity.FormularioNotaActivity"
+            android:parentActivityName=".activity.ListaDisciplinasActivity"
+            android:label="Adicionar Nota">
+
         </activity>
+        <activity
+            android:name=".activity.FormularioDisciplinaActivity"
+            android:label="Nova Disciplina"
+            android:parentActivityName=".activity.FormularioDisciplinaActivity"></activity>
         <activity android:name=".activity.ListaDisciplinasActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

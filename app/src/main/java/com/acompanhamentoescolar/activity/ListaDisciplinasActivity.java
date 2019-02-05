@@ -35,7 +35,7 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getApplicationContext(), CadastroDisciplinaActivity.class));
+                startActivity(new Intent(getApplicationContext(), FormularioDisciplinaActivity.class));
 
             }
         });
