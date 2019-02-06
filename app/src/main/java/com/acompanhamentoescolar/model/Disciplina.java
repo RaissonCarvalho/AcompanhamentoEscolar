@@ -53,19 +53,6 @@ public class Disciplina {
         return notas;
     }
 
-    public void setNotas(ToMany<Nota> notas) {
-        this.notas = notas;
-    }
-
-    public void addNota(Double valor, String data){
-
-        this.notas.add(new Nota(valor, data));
-    }
-
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-
     public double getMediaAprovativa() {
         return mediaAprovativa;
     }
@@ -97,9 +84,11 @@ public class Disciplina {
         String situacao;
 
         if (calculaMedia() >= this.mediaAprovativa){
-            return situacao = "Situação: Aprovado";
+            situacao = "Situação: Aprovado";
+            return situacao;
         }else{
-            return situacao = "Situação: Reprovado";
+            situacao = "Situação: Reprovado";
+            return situacao;
         }
 
     }

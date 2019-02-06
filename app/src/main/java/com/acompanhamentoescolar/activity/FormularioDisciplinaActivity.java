@@ -68,15 +68,26 @@ public class FormularioDisciplinaActivity extends AppCompatActivity {
 
     public void salvarDisciplina(){
 
-        String nome = edNomeDisciplina.getText().toString();
-        double mediaAprovativa = Double.parseDouble(edMediaAprovativa.getText().toString());
-        disciplina.setNome(nome);
-        disciplina.setMediaAprovativa(mediaAprovativa);
+        try {
 
-        disciplinaBox.put(disciplina);
+            String nome = edNomeDisciplina.getText().toString();
+            double mediaAprovativa = Double.parseDouble(edMediaAprovativa.getText().toString());
 
-        Toast.makeText(getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-        finish();
+            if (nome.equals("")){
+                Toast.makeText(getApplicationContext(), "Digite o nome da disciplina", Toast.LENGTH_SHORT).show();
+            }else{
+
+                disciplina.setNome(nome);
+                disciplina.setMediaAprovativa(mediaAprovativa);
+                disciplinaBox.put(disciplina);
+
+                Toast.makeText(getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+        }catch (NumberFormatException e){
+        }
+        Toast.makeText(getApplicationContext(), "Digite a média da disciplina", Toast.LENGTH_SHORT).show();
 
     }
 }
