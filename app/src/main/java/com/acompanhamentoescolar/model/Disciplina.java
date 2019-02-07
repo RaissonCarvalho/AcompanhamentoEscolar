@@ -73,15 +73,43 @@ public class Disciplina {
 
             for (int i = 0; i < notas.size(); i++){
 
-                media += notas.get(i).getValorNota();
+                media += this.notas.get(i).getValorNota();
 
             }
 
-            return media/(notas.size());
+            return media/(this.notas.size());
 
         }catch (IndexOutOfBoundsException e){
             return media;
         }
+    }
+
+    public int calculaQtdNotas(){
+        return this.notas.size();
+    }
+
+    public String verificaValorNotas(){
+        String valorNotas = "";
+
+        try {
+
+            if (calculaQtdNotas() <= 0){
+                return valorNotas = "Nenhuma Nota adicionada";
+            }else{
+
+                for (int i = 0; i < this.notas.size(); i++){
+
+                    valorNotas += "(" +String.valueOf(this.notas.get(i).getValorNota()) + ") ";
+
+                }
+            }
+
+            return valorNotas;
+
+        }catch (IndexOutOfBoundsException e){
+            return valorNotas;
+        }
+
     }
 
     public String verificaSituacao(){
@@ -93,6 +121,21 @@ public class Disciplina {
         }else{
             situacao = "Situação: Reprovado";
             return situacao;
+        }
+
+    }
+
+    public String verificaResultadoDetelhes(){
+
+        if (calculaQtdNotas() <= 0){
+            return "Nenhuma Nota adicionada";
+        }else{
+
+            if (verificaSituacao().equals("Situação: Aprovado")){
+                return "Você está indo bem. Continue assim!";
+            }else{
+                return "Você não está bem nessa disciplina. Estude mais!";
+            }
         }
 
     }

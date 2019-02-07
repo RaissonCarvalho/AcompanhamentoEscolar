@@ -12,14 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.acompanhamentoescolar.R;
 import com.acompanhamentoescolar.activity.FormularioDisciplinaActivity;
 import com.acompanhamentoescolar.activity.FormularioNotaActivity;
 import com.acompanhamentoescolar.model.Disciplina;
 
-import io.objectbox.Box;;
+import io.objectbox.Box;
 
 public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapter.DisciplinaViewHolder> {
 
@@ -88,7 +88,6 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                                 context.startActivity(intent);
 
                                 break;
-
                             }
 
                             case R.id.op_excluir_disciplina:{
@@ -108,7 +107,31 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                                 builder.show();
 
                                 break;
+                            }
 
+                            case R.id.op_info_disciplina:{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                                final LayoutInflater inflater = LayoutInflater.from(context);
+
+                                View view = inflater.inflate(R.layout.dialog_info_layout, null);
+
+                                TextView txtNomeDisciplina = view.findViewById(R.id.txt_info_nome_disciplina);
+                                TextView txtQtdNotas = view.findViewById(R.id.txt_qntd_notas_disciplina);
+                                TextView txtMediaAprovativa = view.findViewById(R.id.txt_info_media_disciplina);
+                                TextView txtDetalhesDisciplina = view.findViewById(R.id.txt_result_info);
+
+                                txtNomeDisciplina.setText("Nome: " +disciplina.getNome());
+                                txtQtdNotas.setText("Quantidade de Notas: " +disciplina.calculaQtdNotas());
+                                txtMediaAprovativa.setText("Média Aprovativa: (" +String.valueOf(disciplina.getMediaAprovativa())+ ")");
+                                txtDetalhesDisciplina.setText(disciplina.verificaResultadoDetelhes());
+
+                                builder.setView(view);
+                                builder.setTitle("Detalhes ");
+                                builder.setPositiveButton("OK", null);
+                                builder.create();
+                                builder.show();
+                                break;
                             }
                         }
 
@@ -134,7 +157,7 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
         TextView txtMedia;
         TextView txtSituacao;
 
-        public DisciplinaViewHolder(@NonNull View itemView) {
+        private DisciplinaViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtNome = itemView.findViewById(R.id.txt_nome_disciplina);
