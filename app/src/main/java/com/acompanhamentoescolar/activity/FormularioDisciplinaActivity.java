@@ -86,8 +86,8 @@ public class FormularioDisciplinaActivity extends AppCompatActivity {
             }
 
         }catch (NumberFormatException e){
+            Toast.makeText(getApplicationContext(), "Digite a média da disciplina", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(getApplicationContext(), "Digite a média da disciplina", Toast.LENGTH_SHORT).show();
 
     }
 }

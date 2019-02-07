@@ -54,17 +54,23 @@ public class FormularioNotaActivity extends AppCompatActivity {
     }
 
     private void salvarNota(){
-        double valorNota = Double.parseDouble(edValorNota.getText().toString());
+        try {
 
-        if (valorNota <0 || valorNota > 10){
-            Toast.makeText(getApplicationContext(), "Digite um valor entre 0 e 10", Toast.LENGTH_LONG).show();
-        }else{
-            Nota nota = new Nota(valorNota, "0");
-            disciplina.getNotas().add(nota);
-            disciplinaBox.put(disciplina);
+            double valorNota = Double.parseDouble(edValorNota.getText().toString());
 
-            Toast.makeText(getApplicationContext(), "Nova nota salva", Toast.LENGTH_SHORT).show();
-            finish();
+            if (valorNota <0 || valorNota > 10){
+                Toast.makeText(getApplicationContext(), "Digite um valor entre 0 e 10", Toast.LENGTH_LONG).show();
+            }else{
+                Nota nota = new Nota(valorNota, "0");
+                disciplina.addNota(nota);
+                disciplinaBox.put(disciplina);
+
+                Toast.makeText(getApplicationContext(), "Nova nota salva", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+        }catch (NumberFormatException e){
+            Toast.makeText(getApplicationContext(), "Digite a nota a ser adicionada", Toast.LENGTH_SHORT).show();
         }
 
 

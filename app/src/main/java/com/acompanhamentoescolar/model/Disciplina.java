@@ -61,6 +61,10 @@ public class Disciplina {
         this.mediaAprovativa = mediaAprovativa;
     }
 
+    public void addNota(Nota nota){
+        this.notas.add(nota);
+    }
+
     public double calculaMedia(){
         double media = 0;
 
