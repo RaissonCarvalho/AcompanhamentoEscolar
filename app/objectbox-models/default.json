@@ -44,10 +44,6 @@
         {
           "id": "2:6088806752013681115",
           "name": "valorNota"
-        },
-        {
-          "id": "3:3185862656020294282",
-          "name": "data"
         }
       ],
       "relations": []
@@ -62,7 +58,8 @@
   "retiredEntityUids": [],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
-    6238328288135612334
+    6238328288135612334,
+    3185862656020294282
   ],
   "retiredRelationUids": [],
   "version": 1

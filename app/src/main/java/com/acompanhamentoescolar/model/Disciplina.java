@@ -117,14 +117,13 @@ public class Disciplina {
     }
 
     public String verificaSituacao(){
-        String situacao;
 
         if (calculaMedia() >= this.mediaAprovativa){
-            situacao = "Situação: Aprovado";
+            this.situacao = "Situação: Aprovado";
             return situacao;
         }else{
-            situacao = "Situação: Reprovado";
-            return situacao;
+            this.situacao = "Situação: Reprovado";
+            return this.situacao;
         }
 
     }
@@ -144,7 +143,8 @@ public class Disciplina {
 
     }
 
-    public void editarNota(double novoValorNota, int position){
-        this.notas.get(position).setValorNota(novoValorNota);
+    public void editarNota(Nota nota, int position){
+        this.notas.remove(position);
+        this.notas.add(position, nota);
     }
 }

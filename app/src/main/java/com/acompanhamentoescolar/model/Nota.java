@@ -9,15 +9,13 @@ public class Nota {
     @Id
     private long id;
     private double valorNota;
-    private String data;
 
     public Nota(){
 
     }
 
-    public Nota(double valorNota, String data) {
+    public Nota(double valorNota) {
         this.valorNota = valorNota;
-        this.data = data;
     }
 
     public long getId() {
@@ -36,11 +34,4 @@ public class Nota {
         this.valorNota = valorNota;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
 }

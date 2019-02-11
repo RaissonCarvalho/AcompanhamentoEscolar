@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.acompanhamentoescolar.R;
 import com.acompanhamentoescolar.model.Disciplina;
+import com.acompanhamentoescolar.model.Nota;
 
 import io.objectbox.Box;
 
@@ -96,13 +97,13 @@ public class NotasRVAdapter extends RecyclerView.Adapter<NotasRVAdapter.NotasVie
                         public void onClick(DialogInterface dialog, int which) {
                             double novoValorNota = Double.parseDouble(edNovoValorNota.getText().toString());
 
-                            disciplina.editarNota(novoValorNota, notasViewHolder.getAdapterPosition());
+                            disciplina.editarNota(new Nota(novoValorNota), position);
                             disciplinaBox.put(disciplina);
 
                             notifyItemChanged(notasViewHolder.getAdapterPosition(), disciplina);
-
-
+                            notifyDataSetChanged();
                             Toast.makeText(context, ""+disciplina.verificaValorNotas(), Toast.LENGTH_SHORT).show();
+
                         }
                     });
 

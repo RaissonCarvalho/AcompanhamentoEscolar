@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.acompanhamentoescolar.R;
 import com.acompanhamentoescolar.adapter.NotasRVAdapter;
@@ -17,7 +18,6 @@ public class ListaNotasActivity extends AppCompatActivity {
     private RecyclerView rvListaNotas;
     private Box<Disciplina> disciplinaBox;
 
-    private Disciplina disciplina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +27,6 @@ public class ListaNotasActivity extends AppCompatActivity {
         setupViews();
 
         disciplinaBox = ((App)getApplication()).getBoxStore().boxFor(Disciplina.class);
-
-
     }
 
     @Override
@@ -41,7 +39,6 @@ public class ListaNotasActivity extends AppCompatActivity {
     private void setupViews(){
 
         rvListaNotas = findViewById(R.id.rv_lista_notas);
-
     }
 
     private void carregarNotas(){
@@ -50,5 +47,6 @@ public class ListaNotasActivity extends AppCompatActivity {
         rvListaNotas.setAdapter(adapter);
         rvListaNotas.setLayoutManager(new LinearLayoutManager(this));
         rvListaNotas.setHasFixedSize(true);
+
     }
 }
