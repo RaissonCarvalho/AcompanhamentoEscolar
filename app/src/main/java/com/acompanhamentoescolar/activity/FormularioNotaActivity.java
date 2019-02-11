@@ -33,9 +33,9 @@ public class FormularioNotaActivity extends AppCompatActivity {
 
         setupViews();
 
-        long id = getIntent().getLongExtra("disciplinaId", -1);
+        long disciplinaId = getIntent().getLongExtra("disciplinaId", -1);
 
-        disciplina = disciplinaBox.get(id);
+        disciplina = disciplinaBox.get(disciplinaId);
 
         btnSalvarNota.setOnClickListener(new View.OnClickListener() {
             @Override

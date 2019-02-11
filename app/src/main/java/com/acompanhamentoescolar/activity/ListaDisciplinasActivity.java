@@ -48,14 +48,14 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
         carregarDisciplinas();
     }
 
-    public void setupViews(){
+    private void setupViews(){
 
         rvListaDisciplinas = findViewById(R.id.rv_lista_disciplinas);
         fabAddDisciplina = findViewById(R.id.fab_add_disciplina);
 
     }
 
-    public void carregarDisciplinas(){
+    private void carregarDisciplinas(){
         DisciplinaRVAdapter adapter = new DisciplinaRVAdapter(disciplinaBox, this);
 
         rvListaDisciplinas.setAdapter(adapter);

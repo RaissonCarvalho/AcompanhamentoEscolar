@@ -65,6 +65,10 @@ public class Disciplina {
         this.notas.add(nota);
     }
 
+    public void removerNota(Nota nota){
+        this.notas.remove(nota);
+    }
+
     public double calculaMedia(){
         double media = 0;
 
@@ -138,5 +142,9 @@ public class Disciplina {
             }
         }
 
+    }
+
+    public void editarNota(double novoValorNota, int position){
+        this.notas.get(position).setValorNota(novoValorNota);
     }
 }

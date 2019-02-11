@@ -11,15 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activity.ListaNotasActivity"
+            android:label="Notas"
+            android:parentActivityName=".activity.ListaDisciplinasActivity">
+        </activity>
+        <activity
             android:name=".activity.FormularioNotaActivity"
-            android:parentActivityName=".activity.ListaDisciplinasActivity"
-            android:label="Adicionar Nota">
+            android:label="Adicionar Nota"
+            android:parentActivityName=".activity.ListaDisciplinasActivity">
 
         </activity>
         <activity
             android:name=".activity.FormularioDisciplinaActivity"
             android:label="Nova Disciplina"
-            android:parentActivityName=".activity.FormularioDisciplinaActivity"></activity>
+            android:parentActivityName=".activity.FormularioDisciplinaActivity" />
         <activity android:name=".activity.ListaDisciplinasActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

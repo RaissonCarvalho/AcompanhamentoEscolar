@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.acompanhamentoescolar.R;
 import com.acompanhamentoescolar.activity.FormularioDisciplinaActivity;
 import com.acompanhamentoescolar.activity.FormularioNotaActivity;
+import com.acompanhamentoescolar.activity.ListaNotasActivity;
 import com.acompanhamentoescolar.model.Disciplina;
 
 import io.objectbox.Box;
@@ -58,12 +59,11 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
 
         }
 
-
         disciplinaViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public boolean onLongClick(final View view) {
                 PopupMenu popupMenu = new PopupMenu(context, view);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_file, popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.menu_notas_file, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -112,25 +112,28 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
                             case R.id.op_info_disciplina:{
                                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
+                                //Criando AlertDialog para Listar Detalhes
                                 final LayoutInflater inflater = LayoutInflater.from(context);
+                                View alertDialogView = inflater.inflate(R.layout.dialog_info, null);
 
-                                View view = inflater.inflate(R.layout.dialog_info_layout, null);
+                                //Fazendo binding das Views do AlertDialog
+                                setupAlertDialogViews(alertDialogView, disciplina);
 
-                                TextView txtNomeDisciplina = view.findViewById(R.id.txt_info_nome_disciplina);
-                                TextView txtQtdNotas = view.findViewById(R.id.txt_qntd_notas_disciplina);
-                                TextView txtMediaAprovativa = view.findViewById(R.id.txt_info_media_disciplina);
-                                TextView txtDetalhesDisciplina = view.findViewById(R.id.txt_result_info);
-
-                                txtNomeDisciplina.setText("Nome: " +disciplina.getNome());
-                                txtQtdNotas.setText("Quantidade de Notas: " +disciplina.calculaQtdNotas());
-                                txtMediaAprovativa.setText("Média Aprovativa: (" +String.valueOf(disciplina.getMediaAprovativa())+ ")");
-                                txtDetalhesDisciplina.setText(disciplina.verificaResultadoDetelhes());
-
-                                builder.setView(view);
+                                builder.setView(alertDialogView);
                                 builder.setTitle("Detalhes ");
                                 builder.setPositiveButton("OK", null);
-                                builder.create();
+                                builder.setNeutralButton("Editar Notas", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        final Intent intent = new Intent(context, ListaNotasActivity.class);
+
+                                        intent.putExtra("disciplinaId", disciplina.getId());
+                                        context.startActivity(intent);
+                                    }
+                                });
+
                                 builder.show();
+
                                 break;
                             }
                         }
@@ -171,6 +174,22 @@ public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapte
         disciplinaBox.remove(disciplinaBox.getAll().get(posicao));
         notifyItemRemoved(posicao);
         notifyItemRangeChanged(posicao, (int) disciplinaBox.count());
+
+    }
+
+    private void setupAlertDialogViews(View alertDialogView ,Disciplina disciplina){
+
+        //Fazendo biding
+        TextView txtNomeDisciplina = alertDialogView.findViewById(R.id.txt_info_nome_disciplina);
+        TextView txtQtdNotas = alertDialogView.findViewById(R.id.txt_qntd_notas_disciplina);
+        TextView txtMediaAprovativa = alertDialogView.findViewById(R.id.txt_info_media_disciplina);
+        TextView txtDetalhesDisciplina = alertDialogView.findViewById(R.id.txt_result_info);
+
+        //Setando txt's do AlertDialog
+        txtNomeDisciplina.setText("Nome: " +disciplina.getNome());
+        txtQtdNotas.setText("Quantidade de Notas: " +disciplina.calculaQtdNotas() + " " + disciplina.verificaValorNotas());
+        txtMediaAprovativa.setText("Média Aprovativa: (" +String.valueOf(disciplina.getMediaAprovativa())+ ")");
+        txtDetalhesDisciplina.setText(disciplina.verificaResultadoDetelhes());
 
     }
 }
