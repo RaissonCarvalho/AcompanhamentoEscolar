@@ -102,8 +102,6 @@ public class NotasRVAdapter extends RecyclerView.Adapter<NotasRVAdapter.NotasVie
 
                             notifyItemChanged(notasViewHolder.getAdapterPosition(), disciplina);
                             notifyDataSetChanged();
-                            Toast.makeText(context, ""+disciplina.verificaValorNotas(), Toast.LENGTH_SHORT).show();
-
                         }
                     });
 
