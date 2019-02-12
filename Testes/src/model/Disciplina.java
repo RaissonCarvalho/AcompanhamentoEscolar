@@ -1,0 +1,145 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Disciplina {
+
+    private long id;
+    private String nome;
+    private String situacao;
+    private List<Nota> notas = new ArrayList<>();
+    private double mediaAprovativa;
+
+    public Disciplina(){
+
+    }
+
+    public Disciplina(String nome, double mediaAprovativa) {
+        this.nome = nome;
+        this.mediaAprovativa = mediaAprovativa;
+    }
+
+    public Disciplina(String nome) {
+        this.nome = nome;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
+    }
+
+    public double getMediaAprovativa() {
+        return mediaAprovativa;
+    }
+
+    public void setMediaAprovativa(double mediaAprovativa) {
+        this.mediaAprovativa = mediaAprovativa;
+    }
+
+    public void addNota(Nota nota){
+        this.notas.add(nota);
+    }
+
+    public void removerNota(Nota nota){
+        this.notas.remove(nota);
+    }
+
+    public double calculaMedia(){
+        double media = 0;
+
+        List<Nota> notas = this.notas;
+        try {
+
+            for (int i = 0; i < notas.size(); i++){
+
+                media += this.notas.get(i).getValorNota();
+
+            }
+
+            return media/(this.notas.size());
+
+        }catch (IndexOutOfBoundsException e){
+            return media;
+        }
+    }
+
+    public int calculaQtdNotas(){
+        return this.notas.size();
+    }
+
+    public String verificaValorNotas(){
+        String valorNotas = "";
+
+        try {
+
+            if (calculaQtdNotas() <= 0){
+                return valorNotas = "Nenhuma Nota adicionada";
+            }else{
+
+                for (int i = 0; i < this.notas.size(); i++){
+
+                    valorNotas += "(" + this.notas.get(i).getValorNota() + ") ";
+
+                }
+            }
+
+            return valorNotas;
+
+        }catch (IndexOutOfBoundsException e){
+            return valorNotas;
+        }
+
+    }
+
+    public String verificaSituacao(){
+
+        if (calculaMedia() >= this.mediaAprovativa){
+            this.situacao = "Situação: Aprovado";
+            return situacao;
+        }else{
+            this.situacao = "Situação: Reprovado";
+            return this.situacao;
+        }
+
+    }
+
+    public String verificaResultadoDetelhes(){
+
+        if (calculaQtdNotas() <= 0){
+            return "Nenhuma Nota adicionada";
+        }else{
+
+            if (verificaSituacao().equals("Situação: Aprovado")){
+                return "Você está indo bem. Continue assim!";
+            }else{
+                return "Você não está bem nessa disciplina. Estude mais!";
+            }
+        }
+
+    }
+
+    public void editarNota(Nota nota, int position){
+        this.notas.remove(position);
+        this.notas.add(position, nota);
+    }
+}

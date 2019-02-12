@@ -61,7 +61,7 @@ public class FormularioNotaActivity extends AppCompatActivity {
             if (valorNota <0 || valorNota > 10){
                 Toast.makeText(getApplicationContext(), "Digite um valor entre 0 e 10", Toast.LENGTH_LONG).show();
             }else{
-                Nota nota = new Nota(valorNota);
+                Nota nota = new Nota(valorNota  );
                 disciplina.addNota(nota);
                 disciplinaBox.put(disciplina);
 

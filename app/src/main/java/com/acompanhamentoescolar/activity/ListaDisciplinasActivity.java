@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.acompanhamentoescolar.R;
-import com.acompanhamentoescolar.adapter.DisciplinaRVAdapter;
+import com.acompanhamentoescolar.adapter.DisciplinasRVAdapter;
 import com.acompanhamentoescolar.model.Disciplina;
 import com.acompanhamentoescolar.persistence.App;
 
@@ -56,7 +56,7 @@ public class ListaDisciplinasActivity extends AppCompatActivity {
     }
 
     private void carregarDisciplinas(){
-        DisciplinaRVAdapter adapter = new DisciplinaRVAdapter(disciplinaBox, this);
+        DisciplinasRVAdapter adapter = new DisciplinasRVAdapter(disciplinaBox, this);
 
         rvListaDisciplinas.setAdapter(adapter);
         rvListaDisciplinas.setLayoutManager(new LinearLayoutManager(this));

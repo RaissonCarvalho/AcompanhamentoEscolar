@@ -22,12 +22,12 @@ import com.acompanhamentoescolar.model.Disciplina;
 
 import io.objectbox.Box;
 
-public class DisciplinaRVAdapter extends RecyclerView.Adapter<DisciplinaRVAdapter.DisciplinaViewHolder> {
+public class DisciplinasRVAdapter extends RecyclerView.Adapter<DisciplinasRVAdapter.DisciplinaViewHolder> {
 
     private Box<Disciplina> disciplinaBox;
     private Context context;
 
-    public DisciplinaRVAdapter(Box<Disciplina> disciplinaBox, Context context) {
+    public DisciplinasRVAdapter(Box<Disciplina> disciplinaBox, Context context) {
         this.disciplinaBox = disciplinaBox;
         this.context = context;
     }

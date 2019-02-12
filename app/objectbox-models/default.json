@@ -47,11 +47,36 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "3:4921988060054238283",
+      "lastPropertyId": "3:3774047479619836663",
+      "name": "Aluno",
+      "properties": [
+        {
+          "id": "1:2920966427867356640",
+          "name": "id"
+        },
+        {
+          "id": "2:2198052434049035281",
+          "name": "nome"
+        },
+        {
+          "id": "3:3774047479619836663",
+          "name": "serie"
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:4031382103504399056",
+          "name": "disciplinas"
+        }
+      ]
     }
   ],
-  "lastEntityId": "2:2348623616023754192",
+  "lastEntityId": "3:4921988060054238283",
   "lastIndexId": "0:0",
-  "lastRelationId": "1:5249531798431803295",
+  "lastRelationId": "2:4031382103504399056",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
